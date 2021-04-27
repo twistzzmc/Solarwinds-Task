@@ -29,7 +29,10 @@ def get_days(file):
 
     for i, row in enumerate(file):
         if i == 0:
-            if row[0] != 'Date' or row[1] != 'Event' or row[2] != 'Gate' or len(row) != 3:
+            if len(row) != 3:
+                raise ValueError(f'ERROR [line {i+1}] Wrong number of columns, must be 3 not {len(row)}!')
+
+            if row[0] != 'Date' or row[1] != 'Event' or row[2] != 'Gate':
                 raise ValueError(f'ERROR: [line {i+1}] Bad columns, should be \'Date;Event;Gate\'')
 
             continue
